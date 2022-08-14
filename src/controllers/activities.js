@@ -27,6 +27,10 @@ export async function createActivities(req, res) {
     gists = await getGists(username);
   }
 
+  if (!gists.length) {
+    return res.status(200).send({ message: 'No Gists found to process.'});;
+  }
+
   const results = [];
 
   try {
@@ -45,6 +49,7 @@ export async function createActivities(req, res) {
 
         const result = await response.json();
         results.push(result.data);
+        console.log(`Created Activity with id ${result.data.id}`);
       })
     );
 

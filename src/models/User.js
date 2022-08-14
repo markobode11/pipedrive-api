@@ -12,16 +12,15 @@ export default class User {
 
   /**
    * Create new user.
-   * @returns created user
    */
   async create() {
     const sql = `
       insert into users (name, lastVisited)
       values ('${this.name}', '${this.lastVisited}');`;
 
-    const [newUser, _] = await db.execute(sql);
+    const [data] = await db.execute(sql);
 
-    return newUser;
+    console.log(`Created new user with id ${data.insertId}`);
   }
 
   /**
@@ -55,13 +54,12 @@ export default class User {
    * Update last visited column for User
    * @param {int} id
    * @param {string} lastVisited
-   * @returns updated user
    */
   async updateLastVisited(id, lastVisited) {
     const sql = `update users set LastVisited = '${lastVisited}' where id = ${id};`;
 
-    const [updatedUser] = await db.execute(sql);
+    await db.execute(sql);
 
-    return updatedUser;
+    console.log(`Updated user with id ${id}`);
   }
 }
