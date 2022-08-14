@@ -58,6 +58,9 @@ Users are saved to database upon Posting to the Activities route.
 
 On following requests the **createAll** param can be added to the request to indicate if Activities should be made from all Gists or only from Gists that were added since the last visit. Default value is **false**
 
+**/activities/:username/interval** route is similar to previous but it now runs in intervals. Interval length and total run times are given in
+.env file. Note that this application does not use authentication for Github API and therfore the maximum requests per hour is 60.
+
 
 ## Author
 * **Marko Bode** - [markobode11](https://github.com/markobode11)
